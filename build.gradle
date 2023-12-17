@@ -40,14 +40,16 @@ subprojects {
     }
 
     // java format
-    spotless {
-        java {
-            googleJavaFormat()
+    subprojects {
+        spotless {
+            java {
+                googleJavaFormat()
 
-            removeUnusedImports()
-            trimTrailingWhitespace()
-            indentWithSpaces(4)
-            endWithNewline()
+                removeUnusedImports()
+                trimTrailingWhitespace()
+                indentWithSpaces(4)
+                endWithNewline()
+            }
         }
     }
 }
