@@ -9,4 +9,5 @@ pluginManagement {
 rootProject.name = 'guinTeam'
 include 'chatting-service'
 include 'account-service'
+include 'team-service'
 
