@@ -2,6 +2,7 @@ bootJar.enabled = true
 jar.enabled = false
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.keycloak:keycloak-admin-client:22.0.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.keycloak:keycloak-spring-boot-starter'
 }
