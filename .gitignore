@@ -25,6 +25,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+/account-service/docker/db
 
 ### NetBeans ###
 /nbproject/private/
