@@ -1,7 +1,16 @@
 package com.guin.team.adapter.out.persistence.repository;
 
 import com.guin.team.adapter.out.persistence.entity.TeamEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TeamRepository extends JpaRepository<TeamEntity, Long> {
+import java.util.List;
+import java.util.Optional;
+
+public interface TeamRepository {
+
+    TeamEntity save(final TeamEntity teamEntity);
+
+    Optional<TeamEntity> findById(final Long id);
+
+    List<TeamEntity> findAll();
+
 }
