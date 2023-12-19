@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' apply(false)
     id 'io.spring.dependency-management'
     id 'com.diffplug.spotless'
+    id 'jacoco'
 }
 
 allprojects {
@@ -39,7 +40,6 @@ subprojects {
         useJUnitPlatform()
     }
 
-    // java format
     subprojects {
         spotless {
             java {
@@ -50,6 +50,13 @@ subprojects {
                 indentWithSpaces(4)
                 endWithNewline()
             }
+        }
+    }
+
+    jacocoTestReport {
+        reports {
+            html.enabled true
+            xml.enabled true
         }
     }
 }
