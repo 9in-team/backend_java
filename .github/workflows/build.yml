@@ -1,0 +1,45 @@
+name: 9-in Team 테스트 자동화
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 프로젝트 체크아웃합니다.
+        uses: actions/checkout@v2
+
+      - name: JDK 21을 설치합니다.
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+
+      - name: TimeZone을 Asia/Seoul로 설정합니다
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Asia/Seoul
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+
+      - name: Gradle 명령 실행을 위한 권한을 부여합니다
+        run: chmod +x gradlew
+
+      - name: Gradle build를 수행합니다
+        run: ./gradlew clean build
+
+      - name: 테스트 결과를 PR에 코멘트로 등록합니다
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: '**/build/test-results/test/TEST-*.xml'
