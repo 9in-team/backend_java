@@ -3,6 +3,7 @@ pluginManagement {
         id 'org.springframework.boot' version "${springBootVersion}"
         id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
         id 'com.diffplug.spotless' version "${spotlessVersion}"
+        id 'org.asciidoctor.jvm.convert' version "${asciidoctorConvertVersion}"
     }
 }
 
@@ -10,4 +11,3 @@ rootProject.name = 'guinTeam'
 include 'chatting-service'
 include 'account-service'
 include 'team-service'
-
