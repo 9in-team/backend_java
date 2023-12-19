@@ -1,0 +1,54 @@
+package com.guin.team.documentation;
+
+import com.guin.team.fixture.domain.TeamFixture;
+import com.guin.team.fixture.dto.TeamCreateRequestFixture;
+import com.guin.team.adapter.in.web.TeamController;
+import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
+import com.guin.team.application.TeamService;
+import com.guin.team.port.in.TeamUseCase;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+
+import static com.guin.team.documentation.step.TeamDocumentStep.resultHandler;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+public class TeamDocumentationTest extends Documentation {
+
+    private TeamController teamController;
+    private TeamUseCase teamUseCase;
+
+    @BeforeEach
+    void setUp() {
+        teamUseCase = mock(TeamService.class);
+        teamController = new TeamController(teamUseCase);
+        mockMvc = mockController(teamController);
+    }
+
+    @DisplayName("모집글 생성하는 restdocs를 생성한다.")
+    @Test
+    void createProject() {
+        final TeamCreateRequest request = TeamCreateRequestFixture.create("테스트 제목");
+
+        when(teamUseCase.save(any())).thenReturn(TeamFixture.create(
+                        request.subject(),
+                        request.content(),
+                        request.subjectType(),
+                        request.openChatUrl()
+                )
+        );
+
+        given().contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(request)
+                .post("/team")
+                .then()
+                .status(HttpStatus.CREATED)
+                .apply(resultHandler());
+
+    }
+
+}
