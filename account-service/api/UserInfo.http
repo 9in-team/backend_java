@@ -1,0 +1,8 @@
+
+### 2.회원조회
+GET http://localhost:8082/realms/master/protocol/openid-connect/userinfo
+Authorization: Bearer {{access_token}}
+
+> {%
+client.log("access_token: " + client.global.get("access_token"));
+ %}

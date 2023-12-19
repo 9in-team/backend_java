@@ -1,0 +1,12 @@
+### 1. 로그인
+POST http://localhost:8082/realms/master/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=admin-cli&client_secret=G6Hxw6Qcxm8Vl6mifxsmTxCPKcN3ljWI&username=guin&password=guin1!
+
+> {%
+ client.global.set("access_token", response.body.access_token);
+ client.global.set("refresh_token", response.body.refresh_token);
+ client.log("access_token: " + client.global.get("access_token"));
+ client.log("refresh_token: " + client.global.get("refresh_token"));
+  %}
