@@ -29,7 +29,7 @@ public class TeamEntity {
     @Enumerated(EnumType.STRING)
     private SubjectType subjectType;
 
-    @Column(name = "open_chat_url", nullable = false, length = 500)
+    @Column(name = "open_chat_url", length = 500)
     private String openChatUrl;
 
     public TeamEntity(final Long leaderId,

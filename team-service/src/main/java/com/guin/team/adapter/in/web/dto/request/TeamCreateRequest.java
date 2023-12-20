@@ -12,7 +12,6 @@ public record TeamCreateRequest(
         String subject,
         @NotBlank(message = "내용은 빈 값을 넣을 수 없습니다.")
         String content,
-        @NotBlank(message = "오픈채팅은 빈 값을 넣을 수 없습니다.")
         String openChatUrl,
         @NotNull(message = "주제타입은 빈 값을 넣을 수 없습니다.")
         SubjectType subjectType,
