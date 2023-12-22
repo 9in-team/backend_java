@@ -12,7 +12,7 @@ public record TeamCreateResponse(
         String subject,
         SubjectType subjectType,
         List<TeamTemplateDetail> teamTemplates,
-        List<String> types,
+        List<String> hashTags,
         List<TeamRoleDetail> teamRoleDetail
 ) {
 
