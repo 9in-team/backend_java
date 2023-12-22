@@ -1,10 +1,13 @@
-package com.guin.team.application.dto;
+package com.guin.team.application.service.dto;
 
 import com.guin.team.domain.constant.SubjectType;
+
+import java.util.List;
 
 public record TeamCommand(
         String subject,
         String content,
         SubjectType subjectType,
-        String openChatUrl
+        String openChatUrl,
+        List<String> hashTags
 ) { }
