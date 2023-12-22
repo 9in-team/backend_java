@@ -1,5 +1,6 @@
 package com.guin.team.adapter.in.web.dto.request;
 
+import com.guin.team.adapter.in.web.validator.annotation.HashTag;
 import com.guin.team.domain.constant.SubjectType;
 import com.guin.team.domain.constant.TemplateType;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +17,9 @@ public record TeamCreateRequest(
         @NotNull(message = "주제타입은 빈 값을 넣을 수 없습니다.")
         SubjectType subjectType,
         List<TeamCreateTemplateRequest> teamTemplates,
-        List<String> types,
+
+        @HashTag(message = "해시태그 최대 5개 10글자를 넘을 수 없습니다.")
+        List<String> hashTags,
         List<TeamCreateRoleRequest> roles
 ) {
 
