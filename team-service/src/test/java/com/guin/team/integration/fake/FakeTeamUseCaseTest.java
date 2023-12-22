@@ -3,15 +3,18 @@ package com.guin.team.integration.fake;
 import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
 import com.guin.team.adapter.out.persistence.TeamPersistenceAdapter;
 import com.guin.team.adapter.out.persistence.entity.TeamEntity;
+import com.guin.team.adapter.out.persistence.mapper.HashTagMapper;
 import com.guin.team.adapter.out.persistence.mapper.TeamMapper;
 import com.guin.team.adapter.out.persistence.repository.TeamRepository;
-import com.guin.team.application.TeamService;
+import com.guin.team.application.service.TeamService;
 import com.guin.team.domain.vo.Team;
 import com.guin.team.fixture.dto.TeamCreateRequestFixture;
 import com.guin.team.integration.fake.repository.FakeTeamRepository;
-import com.guin.team.port.in.TeamUseCase;
+import com.guin.team.application.port.in.TeamUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,7 +30,8 @@ public class FakeTeamUseCaseTest {
         this.teamUseCase = new TeamService(
                 new TeamPersistenceAdapter(
                         this.teamRepository,
-                        new TeamMapper()
+                        new TeamMapper(),
+                        new HashTagMapper()
                 )
         );
 
@@ -46,7 +50,8 @@ public class FakeTeamUseCaseTest {
                 teamEntity.getSubject(),
                 teamEntity.getContent(),
                 teamEntity.getSubjectType(),
-                teamEntity.getOpenChatUrl()
+                teamEntity.getOpenChatUrl(),
+                Collections.emptyList()
         ));
     }
 
