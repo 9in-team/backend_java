@@ -1,4 +1,4 @@
-package com.guin.team.port.in;
+package com.guin.team.application.port.in;
 
 import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
 import com.guin.team.domain.vo.Team;
