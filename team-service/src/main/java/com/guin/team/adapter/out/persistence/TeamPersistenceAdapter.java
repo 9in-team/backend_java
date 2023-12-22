@@ -1,11 +1,12 @@
 package com.guin.team.adapter.out.persistence;
 
 import com.guin.team.adapter.out.persistence.entity.TeamEntity;
+import com.guin.team.adapter.out.persistence.mapper.HashTagMapper;
 import com.guin.team.adapter.out.persistence.mapper.TeamMapper;
 import com.guin.team.adapter.out.persistence.repository.TeamRepository;
-import com.guin.team.application.dto.TeamCommand;
+import com.guin.team.application.service.dto.TeamCommand;
 import com.guin.team.domain.vo.Team;
-import com.guin.team.port.out.TeamPort;
+import com.guin.team.application.port.out.TeamPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ public class TeamPersistenceAdapter implements TeamPort {
 
     private final TeamRepository teamRepository;
     private final TeamMapper teamMapper;
+    private final HashTagMapper hashTagMapper;
 
     @Override
     public Team save(final TeamCommand teamCommand) {
@@ -25,7 +27,8 @@ public class TeamPersistenceAdapter implements TeamPort {
                         teamCommand.subject(),
                         teamCommand.content(),
                         teamCommand.subjectType(),
-                        teamCommand.openChatUrl()
+                        teamCommand.openChatUrl(),
+                        hashTagMapper.toEntity(teamCommand.hashTags())
                 ))
         );
     }
