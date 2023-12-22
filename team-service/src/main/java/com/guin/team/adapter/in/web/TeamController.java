@@ -3,7 +3,7 @@ package com.guin.team.adapter.in.web;
 import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
 import com.guin.team.adapter.in.web.dto.response.TeamCreateResponse;
 import com.guin.team.domain.vo.Team;
-import com.guin.team.port.in.TeamUseCase;
+import com.guin.team.application.port.in.TeamUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +34,7 @@ public class TeamController {
                         team.subject(),
                         team.subjectType(),
                         Collections.emptyList(),
-                        Collections.emptyList(),
+                        team.hashTag(),
                         Collections.emptyList()
                 ));
     }
