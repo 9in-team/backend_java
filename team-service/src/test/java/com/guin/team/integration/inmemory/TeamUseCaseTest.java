@@ -3,15 +3,17 @@ package com.guin.team.integration.inmemory;
 import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
 import com.guin.team.adapter.out.persistence.entity.TeamEntity;
 import com.guin.team.adapter.out.persistence.repository.TeamRepository;
-import com.guin.team.application.TeamService;
+import com.guin.team.application.service.TeamService;
 import com.guin.team.domain.vo.Team;
 import com.guin.team.fixture.dto.TeamCreateRequestFixture;
 import com.guin.team.integration.ServiceTest;
-import com.guin.team.port.in.TeamUseCase;
+import com.guin.team.application.port.in.TeamUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.dao.DataIntegrityViolationException;
+
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -48,7 +50,8 @@ public class TeamUseCaseTest extends ServiceTest {
                 teamEntity.getSubject(),
                 teamEntity.getContent(),
                 teamEntity.getSubjectType(),
-                teamEntity.getOpenChatUrl()
+                teamEntity.getOpenChatUrl(),
+                Collections.emptyList()
         ));
     }
 
