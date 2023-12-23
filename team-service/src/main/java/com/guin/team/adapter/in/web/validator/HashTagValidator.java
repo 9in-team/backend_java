@@ -19,7 +19,7 @@ public class HashTagValidator implements ConstraintValidator<HashTag, List<Strin
         }
 
         if(checkHashTagSize(hashTags)) {
-            return true;
+            return false;
         }
 
         if(checkLength(hashTags)) {
@@ -30,7 +30,7 @@ public class HashTagValidator implements ConstraintValidator<HashTag, List<Strin
     }
 
     private boolean checkHashTagSize(final List<String> hashTags) {
-        return hashTags.size() < MAX_SIZE;
+        return hashTags.size() > MAX_SIZE;
     }
 
     private boolean checkLength(final List<String> hashTags) {
