@@ -12,8 +12,10 @@ import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
 @ExtendWith(RestDocumentationExtension.class)
+@Transactional
 public abstract class Documentation {
 
     protected MockMvcRequestSpecification mockMvc;
