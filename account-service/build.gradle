@@ -2,7 +2,20 @@ bootJar.enabled = true
 jar.enabled = false
 
 dependencies {
-    implementation "org.keycloak:keycloak-admin-client:${keycloackVersion}"
+    implementation 'org.keycloak:keycloak-admin-client:21.0.1'
+    implementation 'org.keycloak:keycloak-spring-boot-starter:21.0.1'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation "org.keycloak:keycloak-spring-boot-starter:${keycloackVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'jakarta.servlet:jakarta.servlet-api'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation "com.google.guava:guava:${guavaVersion}"
+
+    runtimeOnly 'com.h2database:h2'
+
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-restassured'
+    testImplementation 'io.rest-assured:spring-mock-mvc'
+    testImplementation "com.navercorp.fixturemonkey:fixture-monkey-starter:${fixtureMockeyVersion}"
 }
