@@ -1,15 +1,14 @@
 package com.guin.team.integration.inmemory;
 
 import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
-import com.guin.team.adapter.in.web.validator.annotation.HashTag;
 import com.guin.team.adapter.out.persistence.entity.HashTagEntity;
 import com.guin.team.adapter.out.persistence.entity.TeamEntity;
 import com.guin.team.adapter.out.persistence.repository.TeamRepository;
+import com.guin.team.application.port.in.TeamUseCase;
 import com.guin.team.application.service.TeamService;
 import com.guin.team.domain.vo.Team;
 import com.guin.team.fixture.dto.TeamCreateRequestFixture;
 import com.guin.team.integration.ServiceTest;
-import com.guin.team.application.port.in.TeamUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

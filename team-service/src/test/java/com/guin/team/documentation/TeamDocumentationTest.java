@@ -1,11 +1,11 @@
 package com.guin.team.documentation;
 
-import com.guin.team.fixture.domain.TeamFixture;
-import com.guin.team.fixture.dto.TeamCreateRequestFixture;
 import com.guin.team.adapter.in.web.TeamController;
 import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
-import com.guin.team.application.service.TeamService;
 import com.guin.team.application.port.in.TeamUseCase;
+import com.guin.team.application.service.TeamService;
+import com.guin.team.fixture.domain.TeamFixture;
+import com.guin.team.fixture.dto.TeamCreateRequestFixture;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
