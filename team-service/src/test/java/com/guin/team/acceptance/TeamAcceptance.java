@@ -100,4 +100,22 @@ public class TeamAcceptance extends AcceptanceTest {
         ));
     }
 
+    @DisplayName("해시태그가 6개 이상일때 에러를 반환한다.")
+    @Test
+    void isMaxHashTag() {
+        TeamCreateRequest maxHashTagRequest = TeamCreateRequestFixture.create("제목", List.of("자바", "스프링", "JPA", "MYSQL", "AWS", "코틀린"));
+        ExtractableResponse<Response> response = TeamControllerStep.create(maxHashTagRequest);
+
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+    }
+
+    @DisplayName("해시태그 글자가 11개 이상이면 에러를 반환한다.")
+    @Test
+    void isMaxLengthHashTag() {
+        TeamCreateRequest maxLengthHashTagRequest = TeamCreateRequestFixture.create("제목", List.of("Spring Framework"));
+        ExtractableResponse<Response> response = TeamControllerStep.create(maxLengthHashTagRequest);
+
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+    }
+
 }
