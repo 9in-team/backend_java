@@ -14,15 +14,15 @@ public class HashTagValidator implements ConstraintValidator<HashTag, List<Strin
 
     @Override
     public boolean isValid(List<String> hashTags, ConstraintValidatorContext constraintValidatorContext) {
-        if(Objects.isNull(hashTags)) {
+        if (Objects.isNull(hashTags)) {
             return true;
         }
 
-        if(checkHashTagSize(hashTags)) {
+        if (checkHashTagSize(hashTags)) {
             return false;
         }
 
-        if(checkLength(hashTags)) {
+        if (checkLength(hashTags)) {
             return true;
         }
 
