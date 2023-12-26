@@ -1,9 +1,5 @@
 name: 9-in Team 테스트 자동화
 
-permissions:
-  contents: read
-  pull-requests: write
-
 on:
   pull_request:
     branches:
