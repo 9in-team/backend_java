@@ -45,6 +45,11 @@ jobs:
         with:
           files: '**/build/test-results/test/TEST-*.xml'
 
+      - name: Gradle check한다.
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: check
+
       - name: CodeCov에서 jacoco 분석을 해줍니다.
         uses: codecov/codecov-action@v3
         env:
