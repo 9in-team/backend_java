@@ -11,6 +11,7 @@ public class TeamFixture extends Fixture {
                               final SubjectType subjectType,
                               final String openChatUrl) {
         return fixtureMonkey.giveMeBuilder(Team.class)
+                .set("id", 1L)
                 .set("subject", subject)
                 .set("content", content)
                 .set("subjectType", subjectType)

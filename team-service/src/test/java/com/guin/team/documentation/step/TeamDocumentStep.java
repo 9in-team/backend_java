@@ -29,7 +29,7 @@ public class TeamDocumentStep {
                 fieldWithPath("openChatUrl").type(JsonFieldType.STRING).description("오픈채팅방 URL"),
                 fieldWithPath("subjectType").type(JsonFieldType.STRING).description("프로젝트 종류"),
                 fieldWithPath("teamTemplates").type(JsonFieldType.ARRAY).description("질문 템플렛").optional(),
-                fieldWithPath("hashTags").type(JsonFieldType.ARRAY).description("해시태그").optional(),
+                fieldWithPath("hashTags").type(JsonFieldType.ARRAY).description("해시태그"),
                 fieldWithPath("roles").type(JsonFieldType.ARRAY).description("포지션별 참여 인원").optional()
         );
     }
@@ -42,7 +42,7 @@ public class TeamDocumentStep {
                 fieldWithPath("subject").type(JsonFieldType.STRING).description("모집글 제목"),
                 fieldWithPath("subjectType").type(JsonFieldType.STRING).description("프로젝트 종류"),
                 fieldWithPath("teamTemplates").type(JsonFieldType.ARRAY).description("질문 템플렛").optional(),
-                fieldWithPath("hashTags").type(JsonFieldType.ARRAY).description("해시태그").optional(),
+                fieldWithPath("hashTags").type(JsonFieldType.ARRAY).description("해시태그"),
                 fieldWithPath("teamRoleDetail").type(JsonFieldType.ARRAY).description("포지션별 참여 인원").optional()
         );
     }
