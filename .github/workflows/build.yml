@@ -1,5 +1,9 @@
 name: 9-in Team 테스트 자동화
 
+permissions:
+  contents: read
+  pull-requests: write
+
 on:
   pull_request:
     branches:
@@ -51,3 +55,10 @@ jobs:
           name: 9in-codecov
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           files: ./team-service/build/reports/jacoco/test/jacocoTestReport.xml
+
+      - name: Chat GPT가 코드리뷰를 해줍니다.
+        uses: anc95/ChatGPT-CodeReview@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPOSITORY_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LANGUAGE: Korean
