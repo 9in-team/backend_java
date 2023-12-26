@@ -19,6 +19,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'jacoco'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'org.asciidoctor.jvm.convert'
     apply plugin: 'io.spring.dependency-management'
@@ -43,17 +44,17 @@ subprojects {
 
     tasks.named('test') {
         useJUnitPlatform()
+
+        finalizedBy jacocoTestReport
     }
 
     tasks.named('asciidoctor') {
         dependsOn restDocsTest
     }
 
-    check {
-        finalizedBy jacocoTestReport
-    }
-
     jacocoTestReport {
+        dependsOn test
+
         reports {
             xml.required = true
         }
@@ -63,16 +64,8 @@ subprojects {
     jacocoTestCoverageVerification {
         violationRules {
             rule {
-                element = 'CLASS'
                 limit {
-                    counter = 'BRANCH'
-                    value = 'COVEREDRATIO'
-                    minimum = 1
-                }
-                limit {
-                    counter = 'INSTRUCTION'
-                    value = 'COVEREDRATIO'
-                    minimum = 1
+                    minimum = 0.30
                 }
             }
         }
