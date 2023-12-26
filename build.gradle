@@ -43,10 +43,12 @@ subprojects {
 
     tasks.named('test') {
         useJUnitPlatform()
+
+        finalizedBy jacocoTestReport
     }
 
-    check {
-        finalizedBy jacocoTestReport
+    tasks.named('asciidoctor') {
+        dependsOn restDocsTest
     }
 
     jacocoTestReport {
