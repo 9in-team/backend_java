@@ -14,18 +14,18 @@ jobs:
       - name: 프로젝트 체크아웃합니다.
         uses: actions/checkout@v2
 
-      - name: JDK 21을 설치합니다.
+      - name: 자바 21을 설치합니다.
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'zulu'
 
-      - name: TimeZone을 Asia/Seoul로 설정합니다
+      - name: 시간을 서울시간으로 맞춥니다.
         uses: zcong1993/setup-timezone@master
         with:
           timezone: Asia/Seoul
 
-      - name: Cache Gradle packages
+      - name: 그래들 캐시를 삭제합니다.
         uses: actions/cache@v3
         with:
           path: |
@@ -33,10 +33,10 @@ jobs:
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
-      - name: Gradle 명령 실행을 위한 권한을 부여합니다
+      - name: 그래들 명령 실행을 위한 권한을 부여합니다
         run: chmod +x gradlew
 
-      - name: Gradle build를 수행합니다
+      - name: 프로젝트를 빌드합니다.
         run: ./gradlew clean build
 
       - name: 테스트 결과를 PR에 코멘트로 등록합니다
@@ -45,16 +45,16 @@ jobs:
         with:
           files: '**/build/test-results/test/TEST-*.xml'
 
-      - name: CodeCov에서 jacoco 분석을 해줍니다.
+      - name: 코드코브에서 자코코 분석을 해줍니다.
         uses: codecov/codecov-action@v3
         env:
           name: 9in-codecov
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           files: ./team-service/build/reports/jacoco/test/jacocoTestReport.xml
 
-      - name: Chat GPT가 코드리뷰를 해줍니다.
+      - name: 챗봇이 코드리뷰를 해줍니다.
         uses: anc95/ChatGPT-CodeReview@main
         env:
-          GITHUB_TOKEN: ${{ secrets.REPOSITORY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           LANGUAGE: Korean
