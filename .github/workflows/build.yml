@@ -26,11 +26,12 @@ jobs:
           timezone: Asia/Seoul
 
       - name: Cache Gradle packages
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
       - name: Gradle 명령 실행을 위한 권한을 부여합니다
         run: chmod +x gradlew
@@ -43,3 +44,10 @@ jobs:
         if: always()
         with:
           files: '**/build/test-results/test/TEST-*.xml'
+
+      - name: CodeCov에서 jacoco 분석을 해줍니다.
+        uses: codecov/codecov-action@v3
+        env:
+          name: 9in-codecov
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          files: ./team-service/build/reports/jacoco/test/jacocoTestReport.xml
