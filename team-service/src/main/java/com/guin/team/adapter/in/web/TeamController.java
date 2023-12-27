@@ -2,8 +2,9 @@ package com.guin.team.adapter.in.web;
 
 import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
 import com.guin.team.adapter.in.web.dto.response.TeamCreateResponse;
-import com.guin.team.domain.vo.Team;
 import com.guin.team.application.port.in.TeamUseCase;
+import com.guin.team.application.port.in.command.TeamCommand;
+import com.guin.team.domain.vo.Team;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,12 @@ public class TeamController {
 
     @PostMapping
     public ResponseEntity<TeamCreateResponse> createTeam(@Valid @RequestBody TeamCreateRequest request) {
-        final Team team = teamUseCase.save(request);
+        final Team team = teamUseCase.save(new TeamCommand(
+                request.subject(),
+                request.content(),
+                request.subjectType(),
+                request.openChatUrl(),
+                request.hashTags()));
 
         return ResponseEntity.created(URI.create("/team/%d".formatted(team.id())))
                 .body(new TeamCreateResponse(
