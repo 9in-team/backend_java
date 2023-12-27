@@ -1,4 +1,4 @@
-package com.guin.team.application.service.dto;
+package com.guin.team.application.port.in.command;
 
 import com.guin.team.domain.constant.SubjectType;
 
