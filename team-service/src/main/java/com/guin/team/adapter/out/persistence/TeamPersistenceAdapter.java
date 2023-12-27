@@ -4,7 +4,7 @@ import com.guin.team.adapter.out.persistence.entity.TeamEntity;
 import com.guin.team.adapter.out.persistence.mapper.HashTagMapper;
 import com.guin.team.adapter.out.persistence.mapper.TeamMapper;
 import com.guin.team.adapter.out.persistence.repository.TeamRepository;
-import com.guin.team.application.service.dto.TeamCommand;
+import com.guin.team.application.port.in.command.TeamCommand;
 import com.guin.team.domain.vo.Team;
 import com.guin.team.application.port.out.TeamPort;
 import lombok.RequiredArgsConstructor;
