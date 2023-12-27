@@ -43,10 +43,13 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action/composite@v2
         if: always()
         with:
-          files: |
-            test-results/**/*.xml
-            test-results/**/*.trx
-            test-results/**/*.json
+          files: ./team-service/build/test-results/test/TEST-*.xml
+
+      - name: 실패한 라인에 코멘트 달리게 한다.
+        uses: mikepenz/action-junit-report@v3
+        if: always()
+        with:
+          report_paths: ./team-service/build/test-results/test/TEST-*.xml
 
       - name: 코드코브에서 자코코 분석을 해줍니다.
         uses: codecov/codecov-action@v3
