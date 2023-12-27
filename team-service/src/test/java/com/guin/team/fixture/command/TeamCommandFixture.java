@@ -1,6 +1,7 @@
 package com.guin.team.fixture.command;
 
 import com.guin.team.application.port.in.command.TeamCommand;
+import com.guin.team.domain.constant.SubjectType;
 import com.guin.team.fixture.Fixture;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class TeamCommandFixture extends Fixture {
                 .set("subject", subject)
                 .set("hashTags", List.of("스프링"))
                 .set("content", "본문")
+                .set("subjectType", SubjectType.PROJECT)
                 .sample();
     }
 
@@ -22,6 +24,7 @@ public class TeamCommandFixture extends Fixture {
         return fixtureMonkey.giveMeBuilder(TeamCommand.class)
                 .set("subject", subject)
                 .set("openChatUrl", randomUUID)
+                .set("subjectType", SubjectType.PROJECT)
                 .set("hashTags", hashTags)
                 .set("content", "본문")
                 .sample();
