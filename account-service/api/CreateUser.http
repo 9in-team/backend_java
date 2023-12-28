@@ -1,0 +1,15 @@
+POST http://localhost:8082/admin/realms/guin/users
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "firstName": "Sergey",
+  "lastName": "Kargopolov",
+  "email": "test@test.com",
+  "enabled": "true",
+  "username": "app-user"
+}
+
+> {%
+ client.log(client.global.get("access_token"));
+ %}
