@@ -18,4 +18,7 @@ dependencies {
     testImplementation 'org.springframework.restdocs:spring-restdocs-restassured'
     testImplementation 'io.rest-assured:spring-mock-mvc'
     testImplementation "com.navercorp.fixturemonkey:fixture-monkey-starter:${fixtureMockeyVersion}"
+    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-jakarta-validation:1.0.0")
+    testImplementation 'org.projectlombok:lombok'  // Add Lombok to test dependencies
+    testAnnotationProcessor 'org.projectlombok:lombok'  // Add Lombok to test annotation processors
 }
