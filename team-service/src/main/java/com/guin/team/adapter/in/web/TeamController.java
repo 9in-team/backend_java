@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/team")
@@ -25,12 +26,7 @@ public class TeamController {
 
     @PostMapping
     public ResponseEntity<TeamCreateResponse> createTeam(@Valid @RequestBody TeamCreateRequest request) {
-        final Team team = teamUseCase.save(new TeamCommand(
-                request.subject(),
-                request.content(),
-                request.subjectType(),
-                request.openChatUrl(),
-                request.hashTags()));
+        final Team team = teamUseCase.save(toCommand(request));
 
         return ResponseEntity.created(URI.create("/team/%d".formatted(team.id())))
                 .body(new TeamCreateResponse(
@@ -43,6 +39,38 @@ public class TeamController {
                         team.hashTag(),
                         Collections.emptyList()
                 ));
+    }
+
+    private TeamCommand toCommand(final TeamCreateRequest request) {
+        final List<TeamCommand.TeamTemplate> teamTemplates = toTeamTemplate(request);
+        final List<TeamCommand.TeamRole> teamRoles = toTeamRole(request);
+
+        return new TeamCommand(
+                request.subject(),
+                request.content(),
+                request.subjectType(),
+                request.openChatUrl(),
+                request.hashTags(),
+                teamTemplates,
+                teamRoles
+        );
+    }
+
+    private List<TeamCommand.TeamTemplate> toTeamTemplate(final TeamCreateRequest request) {
+        return request.teamTemplates().stream()
+                .map(teamCreateTemplateRequest -> new TeamCommand.TeamTemplate(
+                        teamCreateTemplateRequest.type(),
+                        teamCreateTemplateRequest.question(),
+                        teamCreateTemplateRequest.option()
+                )).toList();
+    }
+
+    private List<TeamCommand.TeamRole> toTeamRole(final TeamCreateRequest request) {
+        return request.roles().stream()
+                .map(teamCreateRoleRequest -> new TeamCommand.TeamRole(
+                        teamCreateRoleRequest.name(),
+                        teamCreateRoleRequest.requiredCount()
+                )).toList();
     }
 
 }
