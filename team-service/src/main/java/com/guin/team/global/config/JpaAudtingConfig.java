@@ -1,4 +1,4 @@
-package com.guin.team.config;
+package com.guin.team.global.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
