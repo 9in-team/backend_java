@@ -43,20 +43,32 @@ public class TeamEntity extends BaseTimeEntity {
     private String openChatUrl;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "hashTag_id")
     private List<HashTagEntity> hashTags;
+
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+    @JoinColumn(name = "team_role_id")
+    private List<TeamRoleEntity> teamRoles;
+
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+    @JoinColumn(name = "team_template_id")
+    private List<TeamTemplateEntity> teamTemplates;
 
     public TeamEntity(final Long leaderId,
                       final String subject,
                       final String content,
                       final SubjectType subjectType,
                       final String openChatUrl,
-                      List<HashTagEntity> hashTags) {
+                      final List<HashTagEntity> hashTags,
+                      final List<TeamRoleEntity> teamRoles,
+                      final List<TeamTemplateEntity> teamTemplates) {
         this.leaderId = leaderId;
         this.subject = subject;
         this.content = content;
         this.subjectType = subjectType;
         this.openChatUrl = openChatUrl;
         this.hashTags = hashTags;
+        this.teamRoles = teamRoles;
+        this.teamTemplates = teamTemplates;
     }
 }
