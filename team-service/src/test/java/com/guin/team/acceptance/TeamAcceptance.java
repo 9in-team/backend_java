@@ -9,6 +9,7 @@ import com.guin.team.adapter.out.persistence.repository.TeamRepository;
 import com.guin.team.domain.constant.SubjectType;
 import com.guin.team.fixture.dto.TeamCreateRequestFixture;
 import com.guin.team.fixture.dto.TeamCreateResponseFixture;
+import com.guin.team.mapper.TeamCreateResponseTestMapper;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
@@ -47,27 +48,15 @@ public class TeamAcceptance extends AcceptanceTest {
 
         TeamEntity teamEntity = teamRepository.findAll().get(0);
 
-        TeamCreateResponse actual = TeamCreateResponseFixture.create(
-                teamEntity.getId(),
-                teamEntity.getOpenChatUrl(),
-                teamEntity.getContent(),
-                teamEntity.getSubject(),
-                teamEntity.getSubjectType()
-        );
+        TeamCreateResponse actual = TeamCreateResponseTestMapper.create(teamEntity);
 
-        assertThat(actual).isEqualTo(TeamCreateResponseFixture.create(
-                response.getLong("teamId"),
-                response.getString("openChatUrl"),
-                response.getString("content"),
-                response.getString("subject"),
-                SubjectType.from(response.getString("subjectType"))
-        ));
+        assertThat(actual).isEqualTo(TeamCreateResponseTestMapper.create(response));
     }
 
     @DisplayName("파라미터에 필수값이 누락될 경우 에러를 반환한다.")
     @Test
     void invalidParameter() {
-        TeamCreateRequest errorRequest = new TeamCreateRequest(null, null, null, null, null, null, null);
+        TeamCreateRequest errorRequest = TeamCreateRequestFixture.create(null);
 
         ExtractableResponse<Response> response = TeamControllerStep.create(errorRequest);
 
