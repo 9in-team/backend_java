@@ -1,8 +1,8 @@
 package com.guin.team.fixture.dto;
 
-import com.guin.team.fixture.Fixture;
 import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
 import com.guin.team.domain.constant.SubjectType;
+import com.guin.team.fixture.Fixture;
 
 import java.util.Collections;
 import java.util.List;
