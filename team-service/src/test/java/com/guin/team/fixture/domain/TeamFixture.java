@@ -4,6 +4,8 @@ import com.guin.team.domain.constant.SubjectType;
 import com.guin.team.domain.vo.Team;
 import com.guin.team.fixture.Fixture;
 
+import java.util.List;
+
 public class TeamFixture extends Fixture {
 
     public static Team create(final String subject,
@@ -16,6 +18,7 @@ public class TeamFixture extends Fixture {
                 .set("content", content)
                 .set("subjectType", subjectType)
                 .set("openChatUrl", openChatUrl)
+                .set("hashTag", List.of("스프링", "자바"))
                 .sample();
     }
 
