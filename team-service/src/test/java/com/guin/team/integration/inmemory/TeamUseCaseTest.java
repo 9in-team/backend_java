@@ -8,7 +8,8 @@ import com.guin.team.application.port.in.command.TeamCommand;
 import com.guin.team.application.service.TeamService;
 import com.guin.team.domain.vo.Team;
 import com.guin.team.fixture.command.TeamCommandFixture;
-import com.guin.team.integration.ServiceTest;
+import com.guin.team.integration.IntegrationTest;
+import com.guin.team.mapper.TeamTestMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class TeamUseCaseTest extends ServiceTest {
+public class TeamUseCaseTest extends IntegrationTest {
 
     private final TeamUseCase teamUseCase;
     private final TeamRepository teamRepository;
@@ -53,7 +54,9 @@ public class TeamUseCaseTest extends ServiceTest {
                 teamEntity.getContent(),
                 teamEntity.getSubjectType(),
                 teamEntity.getOpenChatUrl(),
-                team.hashTag()
+                team.hashTag(),
+                team.teamRoles(),
+                team.teamTemplates()
         ));
     }
 
@@ -84,7 +87,9 @@ public class TeamUseCaseTest extends ServiceTest {
                 teamEntity.getContent(),
                 teamEntity.getSubjectType(),
                 teamEntity.getOpenChatUrl(),
-                toHashTagList(teamEntity.getHashTags())
+                toHashTagList(teamEntity.getHashTags()),
+                TeamTestMapper.toTeamRoles(teamEntity.getTeamRoles()),
+                TeamTestMapper.toTeamTempalte(teamEntity.getTeamTemplates())
         ));
     }
 
