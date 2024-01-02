@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 @Transactional
-public abstract class ServiceTest {
+public abstract class IntegrationTest {
 
     @Autowired
     private DataCleanUp dataCleanUp;
