@@ -1,4 +1,4 @@
-package com.guin.team.mapper;
+package com.guin.team.fixture.mapper;
 
 import com.guin.team.adapter.in.web.dto.response.TeamCreateResponse;
 import com.guin.team.adapter.out.persistence.entity.HashTagEntity;
@@ -61,9 +61,9 @@ public class TeamCreateResponseTestMapper {
                 response.getString("content"),
                 response.getString("subject"),
                 SubjectType.from(response.getString("subjectType")),
-                response.getList("teamTemplates"),
-                response.getList("hashTags"),
-                response.getList("teamRoleDetail")
+                response.getList("teamTemplates", TeamCreateResponse.TeamTemplateDetail.class),
+                response.getList("hashTags", String.class),
+                response.getList("teamRoleDetail", TeamCreateResponse.TeamRoleDetail.class)
         );
     }
 
