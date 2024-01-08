@@ -1,4 +1,4 @@
-package com.guin.team.mapper;
+package com.guin.team.fixture.mapper;
 
 import com.guin.team.adapter.out.persistence.entity.CheckBoxTemplateEntity;
 import com.guin.team.adapter.out.persistence.entity.TeamRoleEntity;
@@ -20,7 +20,7 @@ public class TeamTestMapper {
                 )).toList();
     }
 
-    public static List<TeamTemplate> toTeamTempalte(List<TeamTemplateEntity> teamTemplateEntities) {
+    public static List<TeamTemplate> toTeamTemplate(List<TeamTemplateEntity> teamTemplateEntities) {
         return teamTemplateEntities.stream()
                 .map(teamTemplateEntity -> new TeamTemplate(
                         teamTemplateEntity.getId(),
