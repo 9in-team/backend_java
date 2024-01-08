@@ -9,7 +9,7 @@ import com.guin.team.application.service.TeamService;
 import com.guin.team.domain.vo.Team;
 import com.guin.team.fixture.command.TeamCommandFixture;
 import com.guin.team.integration.IntegrationTest;
-import com.guin.team.mapper.TeamTestMapper;
+import com.guin.team.fixture.mapper.TeamTestMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -89,7 +89,7 @@ public class TeamUseCaseTest extends IntegrationTest {
                 teamEntity.getOpenChatUrl(),
                 toHashTagList(teamEntity.getHashTags()),
                 TeamTestMapper.toTeamRoles(teamEntity.getTeamRoles()),
-                TeamTestMapper.toTeamTempalte(teamEntity.getTeamTemplates())
+                TeamTestMapper.toTeamTemplate(teamEntity.getTeamTemplates())
         ));
     }
 

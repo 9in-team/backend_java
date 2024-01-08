@@ -1,10 +1,7 @@
 package com.guin.team.integration.fake;
 
 import com.guin.team.adapter.out.persistence.TeamPersistenceAdapter;
-import com.guin.team.adapter.out.persistence.entity.CheckBoxTemplateEntity;
 import com.guin.team.adapter.out.persistence.entity.TeamEntity;
-import com.guin.team.adapter.out.persistence.entity.TeamRoleEntity;
-import com.guin.team.adapter.out.persistence.entity.TeamTemplateEntity;
 import com.guin.team.adapter.out.persistence.mapper.HashTagMapper;
 import com.guin.team.adapter.out.persistence.mapper.TeamMapper;
 import com.guin.team.adapter.out.persistence.mapper.TeamRoleMapper;
@@ -14,15 +11,11 @@ import com.guin.team.application.port.in.TeamUseCase;
 import com.guin.team.application.port.in.command.TeamCommand;
 import com.guin.team.application.service.TeamService;
 import com.guin.team.domain.vo.Team;
-import com.guin.team.domain.vo.TeamRole;
-import com.guin.team.domain.vo.TeamTemplate;
 import com.guin.team.fixture.command.TeamCommandFixture;
 import com.guin.team.integration.fake.repository.FakeTeamRepository;
-import com.guin.team.mapper.TeamTestMapper;
+import com.guin.team.fixture.mapper.TeamTestMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -62,7 +55,7 @@ public class FakeTeamUseCaseTest {
                 teamEntity.getOpenChatUrl(),
                 actual.hashTag(),
                 TeamTestMapper.toTeamRoles(teamEntity.getTeamRoles()),
-                TeamTestMapper.toTeamTempalte(teamEntity.getTeamTemplates())
+                TeamTestMapper.toTeamTemplate(teamEntity.getTeamTemplates())
         ));
     }
 
