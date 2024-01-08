@@ -6,7 +6,9 @@ import com.guin.team.domain.vo.TeamRole;
 import com.guin.team.domain.vo.TeamTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -53,11 +55,14 @@ public class TeamMapper {
     }
 
     private List<TeamTemplate.CheckboxTemplate> toCheckBoxTemplateDomain(final List<CheckBoxTemplateEntity> checkBoxTemplateEntities) {
-        return checkBoxTemplateEntities.stream()
-                .map(checkBoxTemplateEntity -> new TeamTemplate.CheckboxTemplate(
-                        checkBoxTemplateEntity.getId(),
-                        checkBoxTemplateEntity.getOptionName()
-                )).toList();
+        return Optional.ofNullable(checkBoxTemplateEntities)
+                .map(entities -> entities.stream()
+                        .map(checkBoxTemplateEntity -> new TeamTemplate.CheckboxTemplate(
+                                checkBoxTemplateEntity.getId(),
+                                checkBoxTemplateEntity.getOptionName()
+                        ))
+                        .toList())
+                .orElse(Collections.emptyList());
     }
 
 }
