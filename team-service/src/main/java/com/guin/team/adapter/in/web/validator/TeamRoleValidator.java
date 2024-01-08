@@ -14,7 +14,7 @@ public class TeamRoleValidator implements ConstraintValidator<TeamRole, List<Tea
 
     @Override
     public boolean isValid(List<TeamCreateRequest.TeamCreateRoleRequest> teamCreateRoleRequests, ConstraintValidatorContext constraintValidatorContext) {
-        if(Objects.isNull(teamCreateRoleRequests)) {
+        if(teamCreateRoleRequests == null) {
             return true;
         }
 
