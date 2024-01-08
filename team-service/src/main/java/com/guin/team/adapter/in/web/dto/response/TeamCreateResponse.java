@@ -19,7 +19,7 @@ public record TeamCreateResponse(
     public record TeamTemplateDetail(
         TemplateType type,
         String question,
-        String options
+        String option
     ) { }
 
     public record TeamRoleDetail(
