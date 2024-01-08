@@ -19,5 +19,9 @@ dependencies {
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'org.springframework.restdocs:spring-restdocs-restassured'
     testImplementation 'io.rest-assured:spring-mock-mvc'
+    testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
+    testImplementation "org.junit.vintage:junit-vintage-engine:${junitVintageEngineVersion}"
     testImplementation "com.navercorp.fixturemonkey:fixture-monkey-starter:${fixtureMockeyVersion}"
 }
