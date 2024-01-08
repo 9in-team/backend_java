@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +29,11 @@ public class TeamService implements TeamUseCase {
     public Team save(final TeamCommand command) {
         final List<TeamTemplate> teamTemplates = command.teamTemplates().stream()
                 .map(teamTemplate -> {
-                    List<TeamTemplate.CheckboxTemplate> checkboxTemplates = Arrays.stream(teamTemplate.option().split(DELIMITER))
-                            .map(option -> new TeamTemplate.CheckboxTemplate(DEFAULT_ID, option))
-                            .toList();
+                    List<TeamTemplate.CheckboxTemplate> checkboxTemplates = Optional.ofNullable(teamTemplate.option())
+                            .map(options -> Arrays.stream(options.split(DELIMITER))
+                                    .map(option -> new TeamTemplate.CheckboxTemplate(DEFAULT_ID, option))
+                                    .toList())
+                            .orElse(Collections.emptyList());
 
                     return new TeamTemplate(DEFAULT_ID, teamTemplate.type(), teamTemplate.question(), checkboxTemplates);
                 })
