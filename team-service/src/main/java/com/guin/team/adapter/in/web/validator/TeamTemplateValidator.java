@@ -13,7 +13,7 @@ import java.util.Objects;
 public class TeamTemplateValidator implements ConstraintValidator<TeamTemplate, List<TeamCreateRequest.TeamCreateTemplateRequest>> {
 
     private static final int MAX_QUESTION_LENGTH = 250;
-    private static final String ENOGHT_CHECKBOX_OPTION = "템플릿이 체크박스일경우에는 옵션이 필수 입니다.";
+    private static final String ENOUGH_CHECKBOX_OPTION = "템플릿이 체크박스일경우에는 옵션이 필수 입니다.";
 
     @Override
     public boolean isValid(List<TeamCreateRequest.TeamCreateTemplateRequest> teamCreateTemplateRequests, ConstraintValidatorContext constraintValidatorContext) {
@@ -27,7 +27,7 @@ public class TeamTemplateValidator implements ConstraintValidator<TeamTemplate, 
 
         if (isCheckboxTemplateOptionValidate(teamCreateTemplateRequests)) {
             constraintValidatorContext.disableDefaultConstraintViolation();
-            constraintValidatorContext.buildConstraintViolationWithTemplate(ENOGHT_CHECKBOX_OPTION)
+            constraintValidatorContext.buildConstraintViolationWithTemplate(ENOUGH_CHECKBOX_OPTION)
                     .addConstraintViolation();
             return false;
         }
