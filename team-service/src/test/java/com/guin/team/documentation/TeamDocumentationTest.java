@@ -3,6 +3,7 @@ package com.guin.team.documentation;
 import com.guin.team.adapter.in.web.TeamController;
 import com.guin.team.adapter.in.web.dto.request.TeamCreateRequest;
 import com.guin.team.application.port.in.TeamUseCase;
+import com.guin.team.application.port.in.mapper.TeamCommandMapper;
 import com.guin.team.application.service.TeamService;
 import com.guin.team.fixture.domain.TeamFixture;
 import com.guin.team.fixture.domain.TeamRoleFixture;
@@ -26,11 +27,12 @@ public class TeamDocumentationTest extends Documentation {
 
     private TeamController teamController;
     private TeamUseCase teamUseCase;
+    private TeamCommandMapper teamCommandMapper = new TeamCommandMapper();
 
     @BeforeEach
     void setUp() {
         teamUseCase = mock(TeamService.class);
-        teamController = new TeamController(teamUseCase);
+        teamController = new TeamController(teamUseCase, teamCommandMapper);
         mockMvc = mockController(teamController);
     }
 
