@@ -4,7 +4,7 @@ import com.guin.storage.sharding.constant.ShardingStrategy;
 import com.guin.storage.sharding.context.Context;
 import com.guin.storage.sharding.context.ThreadLocalContext;
 import com.guin.storage.sharding.error.InvalidShardKeyException;
-import com.guin.storage.sharding.error.ShardingStrategyNotFoundException;
+import com.guin.storage.sharding.error.NotFoundShardingStrategyException;
 import com.guin.storage.sharding.property.ShardingProperty;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
@@ -87,7 +87,7 @@ public class DataSourceRouter extends AbstractRoutingDataSource {
             return getShardNoByRange(sharding.getShardKey(), shardingProperty.rules());
         }
 
-        throw new ShardingStrategyNotFoundException();
+        throw new NotFoundShardingStrategyException();
     }
 
     private int getShardNoByRange(final long shardKey, final List<ShardingProperty.ShardingRule> rules) {
