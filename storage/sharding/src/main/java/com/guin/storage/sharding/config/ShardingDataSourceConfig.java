@@ -8,6 +8,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -23,6 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Configuration
 @ConfigurationProperties(prefix = "datasource")
+@EnableJpaRepositories(basePackages = "com.guin", entityManagerFactoryRef = "entityManagerFactoryBean", transactionManagerRef = "platformTransactionManager")
 public class ShardingDataSourceConfig {
 
     private static final String DELIMITER = "|";
